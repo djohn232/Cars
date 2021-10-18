@@ -28,7 +28,7 @@ public class viewAllCarsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CarHelper dao = new CarHelper();
 		request.setAttribute("allItems", dao.showAllCars());
-		String path = "/shopping-list.jsp";
+		String path = "/car-list.jsp";
 		if(dao.showAllCars().isEmpty()) {
 			path = "/index.html";
 		}

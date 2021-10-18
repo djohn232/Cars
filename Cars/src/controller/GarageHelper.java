@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
  */
 import model.garageDetails;;
 public class GarageHelper {
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("WebShoppingListwithShoppers");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Cars");
 
 	public void insertNewListDetails(garageDetails g) {
 		EntityManager em = emfactory.createEntityManager();

@@ -5,43 +5,20 @@
  */
 package model;
 
-import java.time.LocalDate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  * @author delan
  *
  */
-@Entity
-@Table(name = "cars")
 public class Car {
-	@Id
-	@GeneratedValue
-	private int id;
-	private LocalDate year;
+
+	private int year;
 	private String make;
 	private String model;
 	
-	public Car() {
-		super();
-	}
-	
-	public Car(int id, LocalDate year, String make, String model) {
-		super();
-		this.id = id;
-		this.year = year;
-		this.make = make;
-		this.model = model;
-	}
-	
-	public LocalDate getYear() {
+	public int getYear() {
 		return year;
 	}
-	public void setYear(LocalDate year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 	public String getMake() {
@@ -62,4 +39,14 @@ public class Car {
 		return "Car [year=" + year + ", make=" + make + ", model=" + model + "]";
 	}
 	
+	public Car (int year, String make, String model) {
+		this.year = year;
+		this.make = make;
+		this.model = model;
+	}
+	
+	public Car (String make, String model) {
+		this.make = make;
+		this.model = model;
+	}
 }

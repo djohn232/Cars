@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Car;
+
 /**
- * Servlet implementation class viewAllCarsServlet
+ * Servlet implementation class EditCarServlet
  */
-@WebServlet("/viewAllCarsServlet")
-public class viewAllCarsServlet extends HttpServlet {
+@WebServlet("/editCarServlet")
+public class EditCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewAllCarsServlet() {
+    public EditCarServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,21 +28,25 @@ public class viewAllCarsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CarHelper dao = new CarHelper();
-		request.setAttribute("allItems", dao.showAllCars());
-		String path = "/shopping-list.jsp";
-		if(dao.showAllCars().isEmpty()) {
-			path = "/index.html";
-		}
-	
-		getServletContext().getRequestDispatcher(path).forward(request,response); 
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		CarHelper dao = new CarHelper();
+		String make = request.getParameter("make");
+		String model = request.getParameter("model");
+		Integer tempId = Integer.parseInt(request.getParameter("id"));
+		
+		Car itemToUpdate = dao.searchForCarById(tempId);
+		itemToUpdate.setMake(make);
+		itemToUpdate.setModel(model);
+		dao.updateItem(itemToUpdate);
+		getServletContext().getRequestDispatcher("/viewAllCarsServlet").forward(request, response);
+		
 		doGet(request, response);
 	}
 
